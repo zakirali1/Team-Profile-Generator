@@ -188,7 +188,7 @@ const option1 = () => {
         // console.log(html)
 
         fs.writeFile(outputPath, html, err => {
-            err ? console.error : console.log("sucess!")
+            err ? console.error(err) : console.log("sucess!")
         })
 
         }
