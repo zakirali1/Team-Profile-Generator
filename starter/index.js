@@ -12,6 +12,9 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
+let re = /(\w+)\b@([A-Za-z])+\b[.]\b(\w{2})\b[.]\b[A-Za-z]{2,3}$/g
+let reg = /(\w+)\b@([A-Za-z])+\b[.]\b(\w{3})$/g
+
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
@@ -25,20 +28,35 @@ const mainQuestions = [
 
     {
         type: "input",
-        name: "ID",
-        message: "Enter employee ID"
+        name: "id",
+        message: "Enter employee ID",
+        validate: function(val) {
+            if(!val.match(/\d+(?!\w)/)) {
+                return "must be a all numbers";
+            } else {
+
+            return true;
+            }
+        }
     },
 
     {
         type: "input",
         name: "email",
-        message: "Enter email address"
-    },
+        message: "Enter email address",
+        validate: function(val) {
+            if(val.match(re) || val.match(reg)) {
+                return true;
+            }
+            return "must enter valid email";
+    }
+},
 
     {
         type: "number",
         name: "officeNumber",
-        message: "Enter office number"
+        message: "Enter office number",
+       
     },
 
     // {
@@ -70,15 +88,32 @@ const engineerquestions = [
     },
 
     {
-        type: "number",
+        type: "input",
         name: "engId",
-        message: "engineer id"
+        message: "engineer id",
+        validate: function(val) {
+            if(!val.match(/\d+(?!\w)/)) {
+                return "must be a all numbers";
+            } else {
+                
+            return true;
+            }
+        }
+        
     },
 
     {
         type: "input",
         name: "engEmail",
         message: "enter engineer email",
+        validate: function(val) {
+            if(val.match(re) || val.match(reg)) {
+                return true;
+            }
+            else {
+                return "must enter valid email address";
+            }
+        }
 
     },
 
@@ -99,16 +134,32 @@ const internQuestions = [
 
     {
 
-        type: "number",
+        type: "input",
         name: "id",
-        message: "Enter your ID number"
+        message: "Enter your ID number",
+        validate: function(val) {
+            if(!val.match(/\d+(?!\w)/)) {
+                return "must be a all numbers";
+            } else {
+                
+            return true;
+            }
+        }
 
     },
 
     {
         type: "input",
         name: "email",
-        message: "Enter your email address"
+        message: "Enter your email address",
+        validate: function(val) {
+            if(val.match(re) || val.match(reg)) {
+                return true;
+            }
+            else {
+                return "must enter valid email address";
+            }
+        }
     },
 
     {
